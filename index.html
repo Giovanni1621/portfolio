@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>John Mark V. Asis | Engineering Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --card-bg: rgba(20, 28, 43, 0.75);
+      --accent-orange: #ff5e36;
+      --accent-orange-glow: rgba(255, 94, 54, 0.35);
+      --accent-blue: #3b82f6;
+      --accent-blue-glow: rgba(59, 130, 246, 0.25);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 94, 54, 0.5);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Reset & Global */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 10%;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(11, 15, 23, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.3rem;
+      letter-spacing: 1.5px;
+      background: linear-gradient(135deg, #ffffff 40%, var(--accent-orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 2rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-orange);
+    }
+
+    /* Hero Section with Video Background */
+    .hero {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 1.5rem;
+      overflow: hidden;
+    }
+
+    .hero-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: 0;
+      filter: brightness(0.45) contrast(1.15);
+      pointer-events: none;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle at center,
+        rgba(11, 15, 23, 0.3) 0%,
+        rgba(11, 15, 23, 0.8) 70%,
+        var(--bg) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 850px;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #ffffff 40%, var(--accent-orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      margin-bottom: 2.2rem;
+    }
+
+    /* Buttons */
+    .cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 1.8rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-orange), #e04822);
+      color: #ffffff;
+      border: none;
+      box-shadow: 0 4px 15px var(--accent-orange-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 94, 54, 0.45);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px);
+    }
+
+    /* Sections Layout */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 45px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-orange), var(--accent-blue));
+      margin: 0.6rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* Grid & Cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-hover);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .card-subtitle {
+      color: var(--accent-orange);
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+    }
+
+    .card ul {
+      list-style-position: inside;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .card li {
+      margin-bottom: 0.6rem;
+    }
+
+    /* Skills Badges */
+    .skills-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      justify-content: center;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 0.65rem 1.25rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      backdrop-filter: blur(8px);
+      transition: var(--transition);
+    }
+
+    .badge:hover {
+      border-color: var(--accent-orange);
+      transform: translateY(-2px);
+      color: #ffffff;
+    }
+
+    /* Contact Details */
+    .contact-container {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.25rem 2rem;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      color: var(--text);
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .contact-card:hover {
+      border-color: var(--accent-orange);
+      transform: translateY(-3px);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 5%;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+      .hero p {
+        font-size: 1.05rem;
+      }
+      .cta-group {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="logo">JM ASIS</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section with Ambient Slow Background Video -->
+  <section class="hero">
+    <video class="hero-video" id="bgVideo" autoplay muted loop playsinline>
+      <source src="for my portfolio.mp4" type="video/mp4" />
+      <source src="intro.mp4" type="video/mp4" />
+      Your browser does not support video background.
+    </video>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <h1>John Mark V. Asis</h1>
+      <p>Manufacturing Engineer &amp; Computer Engineering Specialist</p>
+      <div class="cta-group">
+        <a href="#experience" class="btn btn-primary">View Experience</a>
+        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Container -->
+  <main class="container">
+    
+    <!-- Professional Summary -->
+    <section id="about" style="margin-bottom: 5rem; text-align: center;">
+      <h2 class="section-title">Professional Summary</h2>
+      <p style="max-width: 800px; margin: 0 auto; color: var(--text-muted); font-size: 1.1rem; line-height: 1.8;">
+        Manufacturing Engineer with a solid foundation in Computer Engineering and technical drafting. Proven experience in troubleshooting production issues, supporting manufacturing operations, and enhancing product quality and process efficiency in electronics manufacturing environments.
+      </p>
+    </section>
+
+    <!-- Work Experience -->
+    <section id="experience" style="margin-bottom: 5rem;">
+      <h2 class="section-title">Work Experience</h2>
+      <div class="grid">
+        
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manufacturing Engineer</h3>
+            <span style="color: var(--text-muted); font-size: 0.85rem;">2024 – Present</span>
+          </div>
+          <div class="card-subtitle">Ju-Young Electronics Inc.</div>
+          <ul>
+            <li>Analyzed and troubleshot production issues to support manufacturing operations, enhancing efficiency and resolving ~20% of recurring problems.</li>
+            <li>Implemented process improvement initiatives that increased product quality by ~15% and boosted production efficiency.</li>
+            <li>Coordinated with engineering and production teams to address fitting and tolerance-related issues, minimizing errors and production delays.</li>
+            <li>Prepared detailed technical documentation and reports for engineering analyses to facilitate informed decision-making and support continuous improvement.</li>
+            <li>Participated in cross-functional teams to align manufacturing processes with operational goals, promoting a culture of safety and quality.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">On-the-Job Trainee</h3>
+            <span style="color: var(--text-muted); font-size: 0.85rem;">2023</span>
+          </div>
+          <div class="card-subtitle">Fully Advanced Manpower Solution Inc.</div>
+          <ul>
+            <li>Assisted engineering staff with technical documentation and drafting tasks, ensuring compliance with company standards.</li>
+            <li>Supported troubleshooting activities and basic system setup, contributing to problem resolution in a fast-paced environment.</li>
+            <li>Gained hands-on experience in manufacturing processes and technology, enhancing skills in production support and collaboration.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Education & Credentials -->
+    <section id="education" style="margin-bottom: 5rem;">
+      <h2 class="section-title">Education &amp; Credentials</h2>
+      <div class="grid">
+        
+        <div class="card">
+          <h3 class="card-title">Bachelor of Science in Computer Engineering</h3>
+          <div class="card-subtitle">Cavite State University, Indang, Cavite</div>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Solid technical foundation combining computing hardware, automated systems, software development, and engineering troubleshooting.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">National Certificate II (NCII) - Technical Drafting</h3>
+          <div class="card-subtitle">Tanza National Trade School</div>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Certified in Mechanical Layout and Details drafting, specializing in 2D/3D technical schematics and production blueprints.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Certifications & Skills -->
+    <section id="skills" style="margin-bottom: 5rem;">
+      <h2 class="section-title">Skills &amp; Technical Tools</h2>
+      <div class="skills-wrapper">
+        <span class="badge">AutoCAD Drafting</span>
+        <span class="badge">SolidWorks</span>
+        <span class="badge">Manufacturing Troubleshooting</span>
+        <span class="badge">Process Analysis</span>
+        <span class="badge">Root Cause Analysis</span>
+        <span class="badge">Production Support</span>
+        <span class="badge">Technical Documentation</span>
+        <span class="badge">Python</span>
+        <span class="badge">JavaScript</span>
+        <span class="badge">C++</span>
+        <span class="badge">Microsoft Office</span>
+        <span class="badge">Adobe Photoshop</span>
+        <span class="badge">Adobe Premiere Pro</span>
+        <span class="badge">Canva</span>
+        <span class="badge">Cross-functional Coordination</span>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="text-align: center;">
+      <h2 class="section-title">Contact</h2>
+      <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 1.5rem auto;">
+        Feel free to reach out for engineering roles, technical drafting inquiries, or collaboration opportunities.
+      </p>
+      
+      <div class="contact-container">
+        <a href="mailto:asisjohnmark16@gmail.com" class="contact-card">
+          ✉️ asisjohnmark16@gmail.com
+        </a>
+        <a href="tel:+639471878122" class="contact-card">
+          📞 (+63) 947-187-8122
+        </a>
+        <div class="contact-card">
+          📍 Tanza, Cavite, Philippines
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 John Mark V. Asis. All rights reserved.</p>
+  </footer>
+
+  <!-- Script to Slow Video Playback -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const bgVideo = document.getElementById("bgVideo");
+      if (bgVideo) {
+        bgVideo.playbackRate = 0.5; // Plays video at 50% speed for a smooth background effect
+      }
+    });
+  </script>
+</body>
+</html>
